@@ -18,7 +18,7 @@ object SQLDemo {
         |)
         |with(
         |'connector' = 'doris',
-        |'fenode' = 'test:8030',
+        |'fenodes' = 'test:8030',
         |'table.identifier' = 'test_db.table1',
         |'username' = 'test',
         |'password' = '123456'
@@ -26,9 +26,9 @@ object SQLDemo {
         |""".stripMargin
     tableEnv.executeSql(create_sql)
 //    读取数据
-    tableEnv.executeSql("select * from flink_doris").print()
+//    tableEnv.executeSql("select * from flink_doris").print()
 //    写入数据
-    tableEnv.executeSql("insert into flink_doris(siteid,username,pv) values(33,'liuxiaoshuai2',100))")
+    tableEnv.executeSql("insert into flink_doris(siteid,username,pv) values(33,'liuxiaoshuai2',100)")
 
   }
 }

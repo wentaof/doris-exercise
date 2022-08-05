@@ -1,8 +1,10 @@
 package flink
 
-import org.apache.doris.flink.cfg._
-import org.apache.flink.streaming.api.environment._
-
+import org.apache.doris.flink.cfg._;
+import org.apache.doris.flink.datastream.DorisSourceFunction;
+import org.apache.doris.flink.deserialization.SimpleListDeserializationSchema;
+import
+org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import java.util.Properties
 
 object DataStreamJsonSinkDemo {
@@ -14,7 +16,7 @@ object DataStreamJsonSinkDemo {
     pro.setProperty("format", "json")
     pro.setProperty("strip_outer_array", "true")
 
-    env.fromElements("{\"longitude\": \"116.405419\", \"city\": \"北京\", \"latitude\": \"39.916927\"}")
+//    env.fromElements("{\"longitude\": \"116.405419\", \"city\": \"北京\", \"latitude\": \"39.916927\"}")
 //      .addSink(DorisSink.sink(
 //        DorisReadOptions.builder().build(),
 //        DorisExecutionOptions.builder()
@@ -28,16 +30,16 @@ object DataStreamJsonSinkDemo {
 //          .setUsername("test")
 //          .setPassword("123456")
 //          .setTableIdentifier("city_info")
-//      )
+//      ))
 
-//      .addSink(
-//        DorisSink.sink(DorisOptions.builder()
-//                  .setFenodes("test:8030")
-//                  .setUsername("test")
-//                  .setPassword("123456")
-//                  .setTableIdentifier("city_info"))
-//      )
+//        .addSink(
+//          DorisSink.sink(DorisOptions.builder()
+//            .setFenodes("test:8030")
+//            .setUsername("test")
+//            .setPassword("123456")
+//            .setTableIdentifier("city_info"))
+//        )
 
-    env.execute()
+        env.execute()
   }
 }

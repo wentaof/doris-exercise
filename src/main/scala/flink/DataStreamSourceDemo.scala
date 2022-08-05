@@ -12,7 +12,7 @@ object DataStreamSourceDemo {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(1)
     val prop = new Properties()
-    prop.setProperty("fenodes","hadoop1:8030")
+    prop.setProperty("fenodes","test:8030")
     prop.setProperty("username","test")
     prop.setProperty("password","123456")
     prop.setProperty("table.identifier","test_db.table1")

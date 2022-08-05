@@ -1,6 +1,7 @@
 package spark
 
 import org.apache.spark.sql.SparkSession
+
 /*
 CREATE TABLE table1
 (
@@ -20,21 +21,23 @@ insert into table1 values
 (5,3,'helen',3);
  */
 object SQLDemo {
+//  目前测试没通过报错了 Unrecognized field "keysType"
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder().appName("SQLDemo").master("local[*]").getOrCreate()
     spark.sql(
       """
-        |create temporary view spark_doris using doris
-        |options(
-        |"table.identifier"="test_db.table1",
-        |"fenodes"="test:8030",
-        |"user"="test",
-        |"password"="123456"
-        |)
+        |CREATE TEMPORARY VIEW spark_doris
+        |USING doris
+        |OPTIONS(
+        |  "table.identifier"="test_db.student2",
+        |  "fenodes"="bogon:8030",
+        |  "user"="test",
+        |  "password"="123456"
+        |);
         |""".stripMargin)
     //读取数据
     spark.sql("select * from spark_doris").show()
     //写入数据
-    spark.sql("insert into spark_doris values (9,9,'xiaoshuai',5)")
+    //    spark.sql("insert into spark_doris values (9,9,'xiaoshuai',5)")
   }
 }
